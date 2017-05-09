@@ -9,13 +9,26 @@
 
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
+apply plugin: 'maven'
 apply plugin: 'eclipse'
+
+version = '1.0.0'
+group 'at.tuwien.ict.commonutils'
+sourceCompatibility = 1.8	//Java version
+targetCompatibility = 1.8
+
+def bundleSymbolicName = 'at.tuwien.ict.commonutils.configbuilder'
+def bundleName = 'Common Tools'
+def classpathprefix = 'lib/'
 
 // In this section you declare where to find the dependencies of your project
 repositories {
     // Use 'jcenter' for resolving your dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
+    mavenCentral()
+    mavenLocal()
+  	//mavenCentral artifactUrls:['file://${basedir}/lib']
 }
 
 // In this section you declare the dependencies for your production and test code
@@ -32,4 +45,36 @@ dependencies {
 	// https://mvnrepository.com/artifact/com.opencsv/opencsv
 	compile group: 'com.opencsv', name: 'opencsv', version: '3.8'
 
+}
+
+//Create custom tasks
+task copyDependencies(type: Copy) {	//Create a task to copy all dependencies from the standard "compile-configuration" into a folder
+   from configurations.compile
+   into 'dependencies'
+}
+
+task copyBundleFile(type: Copy) {
+	copy {
+        from 'build/libs/' + project.name + '-' + version + '.jar'
+        into "deploy/common-tools"
+    }
+}
+
+jar {
+    baseName 'common-tools'-project.version
+	//Generate a manifest file
+	manifest { 
+		version = project.version.replace('-','.');	//Create a version in the manifest from the variable "version" of this file
+		//symbolicName = bundleSymbolicName
+		//name = bundleName
+		
+		//Classpath
+		//attributes(
+		//	'Class-Path': configurations.compile.collect { it.getName() }.join(' '), 
+		//	'Main-Class': 'at.tuwien.ict.commonutils.configbuilder.Maintester')
+    }
+	
+	//into('lib') {
+    //	from configurations.compile
+    //}
 }
