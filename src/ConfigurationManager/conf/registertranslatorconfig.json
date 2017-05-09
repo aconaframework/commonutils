@@ -1,0 +1,9 @@
+{	"osgidriver":
+		{"deviceaddress":"registertranslation/device/address/[0-9]",
+		"driverid":"registertranslator",
+		"drivername":"Smart Breaker Register Translator Driver"},
+	"devicedriver":
+		{"serial":"0x0010",
+		"channeladdress":"operationmode"
+		}
+}
