@@ -1,6 +1,6 @@
 package commonUtils;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class TextTools {
 	
@@ -10,7 +10,7 @@ public class TextTools {
 	 * @param poList
 	 * @return
 	 */
-	public static <E extends Object> String arrayListToString(ArrayList<E> poList) {
+	public static <E extends Object> String arrayListToString(List<E> poList) {
 		String oResult = "";
 		
 		for (E oObject: poList) {
