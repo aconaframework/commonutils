@@ -16,3 +16,5 @@
 /src/UserConsole/deploy
 /src/UserConsole/gradle
 /src/ConfigurationManager/lib
+/src/simple-user-console/bin
+/src/simple-user-console/.settings
