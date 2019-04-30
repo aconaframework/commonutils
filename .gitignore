@@ -18,3 +18,7 @@
 /src/ConfigurationManager/lib
 /src/simple-user-console/bin
 /src/simple-user-console/.settings
+/src/simple-user-console/.classpath
+/src/simple-user-console/.project
+/src/simple-user-console/gradlew
+/src/simple-user-console/gradlew.bat
